@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
+<div class="navbar-nav ml-auto py-0">
+    @if(SignInManager.IsSignedIn(User)) {
+        <a href="/account" class="nav-item nav-link">
+            @User.Identity.Name
+        </a>
+        <a href="/logout" class="nav-item nav-link">
+            Logout
+        </a>
+    }
+</div>

@@ -1,0 +1,32 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_AuthLayout";
+}
+
+<form class="form-horizontal form-material" method="POST" id="loginform">
+    <h3 class="text-center m-b-20 text-dark">Sign In</h3>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            <input class="form-control" type="text" asp-for="UserName" required placeholder="User name"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <input class="form-control" type="password" asp-for="Password" required placeholder="Password"/>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <div class="col-xs-12 p-b-20">
+            <button class="btn w-100 btn-lg btn-success btn-rounded text-white" type="submit">Log In</button>
+        </div>
+    </div>
+    <div class="form-group m-b-0">
+        <div class="col-sm-12 text-center text-dark">
+            Don't have an account?
+            <a href="/register" class="text-success m-l-5">
+                <b>Sign Up</b>
+            </a>
+        </div>
+    </div>
+</form>

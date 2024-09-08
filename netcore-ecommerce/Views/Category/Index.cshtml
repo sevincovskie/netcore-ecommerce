@@ -1,0 +1,57 @@
+@model IEnumerable<netcore_ecommerce.Models.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">
+            Categories
+        </h4>
+    </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    Categories
+                </li>
+            </ol>
+            <a href="/category/create" class="btn btn-primary d-none d-lg-block m-l-15 text-white">
+                <i class="ti-plus"></i> Create New
+            </a>
+        </div>
+    </div>
+</div>
+<table class="table color-bordered-table primary-bordered-table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    <i class="ti-pencil-alt"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="ti-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

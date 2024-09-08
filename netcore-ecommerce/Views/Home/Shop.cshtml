@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Shop";
+    Layout = "_Layout";
+}
+
+<!-- Page Header Start -->
+<div class="container-fluid  mb-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop</h1>
+        <div class="d-inline-flex">
+            <p class="m-0">
+                <a href="/">Home</a>
+            </p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0">Shop</p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Shop Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-12">
+            <!-- Price Start -->
+            <div class="border-bottom mb-4 pb-4">
+                <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                <form asp-action="Filter" method="get">
+                    <div class="input-group mb-3">
+                        <input type="search" class="form-control" placeholder="Search by name" name="searchName"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <label for="maxPrice">Maximum Price: </label>
+                    <input type="range" id="maxPrice" name="maxPrice" min="0" max="30000" value="30000" oninput="this.nextElementSibling.value = this.value"/>
+                    <output>30000</output>
+                    <select id="category" name="categoryId" class="form-control my-3">
+                        <option value="">All Categories</option>
+                        @foreach(var category in ViewBag.categories) {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-primary rounded w-100">Filter</button>
+                </form>
+            </div>
+            <!-- Price End -->
+        </div>
+        <!-- Shop Sidebar End -->
+
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-12">
+            <div class="row pb-3">
+                @foreach(var product in ViewBag.products) {
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="~/products/@product.Picture" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">
+                                    <a href="/home/details/@product.ProductId" class="text-decoration-none">
+                                        @product.Name
+                                    </a>
+                                    <p>
+                                        <a href="/home/category/@product.CategoryId" class="text-decoration-none">
+                                            @product.Category.Name
+                                        </a>
+                                    </p>
+                                </h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>
+                                        @product.Price₼
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <a href="/home/details/@product.ProductId" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                </a>
+                                <a href="/cart/add/@product.ProductId" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->

@@ -1,0 +1,72 @@
+@model netcore_ecommerce.Models.Slider
+
+@{
+    ViewData["Title"] = "Edit Slide";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">
+            Edit Slide
+        </h4>
+    </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/slider">
+                        Slider
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    Edit Slide
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id"/>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Header1" class="control-label"></label>
+                <input asp-for="Header1" class="form-control"/>
+                <span asp-validation-for="Header1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Header2" class="control-label"></label>
+                <input asp-for="Header2" class="form-control"/>
+                <span asp-validation-for="Header2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Context" class="control-label"></label>
+                <input asp-for="Context" class="form-control"/>
+                <span asp-validation-for="Context" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUpload" class="control-label"></label>
+                <input asp-for="ImageUpload" type="file" class="form-control"/>
+                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

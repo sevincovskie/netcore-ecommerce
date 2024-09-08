@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+    Layout = "_AdminLayout";
+}
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">
+            Orders
+        </h4>
+    </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    Orders
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<table class="table color-bordered-table primary-bordered-table">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Products
+        </th>
+        <th>
+            Operations
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in ViewBag.Orders) {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td class="w-25">
+                @item.Address
+            </td>
+            <td>
+                @item.GrandTotal
+            </td>
+            <td>
+                @foreach(var productId in item.ProductId) {
+                    var product = ((IEnumerable<dynamic>)ViewBag.Products).FirstOrDefault(p => p.ProductId == productId);
+                    if(product != null) {
+                        @product.Name
+                        <span> - </span>
+                        @item.Quantity[Array.IndexOf(item.ProductId, productId)]
+                        <br/>
+                    }
+                }
+            </td>
+            <td>
+                <a href="/order/delete/@item.Id" class="btn btn-danger">
+                    <i class="ti-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

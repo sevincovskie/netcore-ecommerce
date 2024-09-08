@@ -1,0 +1,81 @@
+@model IEnumerable<netcore_ecommerce.Models.Slider>
+
+@{
+    ViewData["Title"] = "Slider";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">
+            Slider
+        </h4>
+    </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item">
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    Slider
+                </li>
+            </ol>
+            <a href="/slider/create" class="btn btn-primary d-none d-lg-block m-l-15 text-white">
+                <i class="ti-plus"></i> Create New
+            </a>
+        </div>
+    </div>
+</div>
+<table class="table color-bordered-table primary-bordered-table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Context)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Context)
+            </td>
+            <td>
+                <img src="~/slider/@Html.DisplayFor(modelItem => item.Image)" alt="" class="w-25"/>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    <i class="ti-pencil-alt"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="ti-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
